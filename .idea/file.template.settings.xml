@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExportableFileTemplateSettings">
+    <default_templates>
+      <template name="_AoC day.kt" file-name="Day${DAY}" reformat="true" live-template-enabled="false" />
+      <template name="input_today." file-name="input_${DAY}_1" reformat="true" live-template-enabled="false" />
+    </default_templates>
+  </component>
+</project>
