@@ -1,6 +1,6 @@
 object Day01: AoCDay {
 	override fun solvePart1() {
-		val file = "input_1_1"
+		val file = "input_01_1"
 		val max = object {}::class.java.getResource(file)!!
 			.readText()
 			.split("\n\n")
@@ -10,7 +10,7 @@ object Day01: AoCDay {
 	}
 
 	override fun solvePart2() {
-		val file = "input_1_1"
+		val file = "input_01_1"
 		val last3Sum = object {}::class.java.getResource(file)!!
 			.readText()
 			.split("\n\n")
