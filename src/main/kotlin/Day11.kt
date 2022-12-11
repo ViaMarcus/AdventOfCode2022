@@ -4,7 +4,7 @@ object Day11 : AoCDay {
 			.readText()
 			.split("\n\n")
 
-		monkeyText.forEach { Monkey(it) }
+		monkeyText.forEach { Monkey(it, true) }
 
 		val rounds = 20
 
@@ -16,14 +16,33 @@ object Day11 : AoCDay {
 			}
 		}
 
-		println(Monkey.monkeys.map { it.tossedTimes }.sorted().takeLast(2) )
+		val top2 = Monkey.monkeys.map { it.tossedTimes }.sorted().takeLast(2)
+		println("" + top2[0] + " * " + top2[1] + " = " + top2[0] * top2[1])
+
+		Monkey.monkeys.clear()
 	}
 
 	override fun solvePart2() {
-		val lines = object {}::class.java.getResource("input_11_1")!!
+		val monkeyText = object {}::class.java.getResource("input_11_1")!!
 			.readText()
-			.lines()
+			.split("\n\n")
 
-		println()
+		monkeyText.forEach { Monkey(it, false) }
+
+		val divider = Monkey.monkeys.map { it.divisibleBy }.reduce { acc, i -> acc * i }
+		Monkey.divideWith = divider
+
+		val rounds = 10000
+
+		repeat(rounds) { it ->
+			Monkey.monkeys.forEach {
+				it.toss()
+			}
+		}
+
+		println(Monkey.monkeys)
+
+		val top2 = Monkey.monkeys.map { it.tossedTimes }.sorted().takeLast(2)
+		println("" + top2[0] + " * " + top2[1] + " = " + top2[0] * top2[1])
 	}
 }

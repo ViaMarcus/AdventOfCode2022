@@ -1,10 +1,11 @@
 import javax.script.ScriptEngineManager
 
 class Monkey(
-	init: String
+	init: String,
+	val part1: Boolean
 ) {
 	val inventory = mutableListOf<Long>()
-	var tossedTimes = 0;
+	var tossedTimes = 0L;
 
 	var inspectOperator: Char = '*'
 	var inspectAmount: String
@@ -24,7 +25,7 @@ class Monkey(
 
 	fun toss() {
 		inventory.forEach {
-			val newValue = inspect(it) / 3
+			val newValue = if (part1) inspect(it) / 3 else inspect(it) % divideWith
 			tossedTimes++
 			val target = if (test(newValue)) targetTrue else targetFalse
 			val receiver = monkeys[target]
@@ -61,5 +62,6 @@ class Monkey(
 
 	companion object {
 		val monkeys = mutableListOf<Monkey>()
+		var divideWith = 3
 	}
 }
