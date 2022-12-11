@@ -74,7 +74,29 @@ object Day09 : AoCDay {
 			.dropLast(1)
 			.map { Pair(it[0], Integer.parseInt(it.substring(2))) }
 
-		val visitedCoords = getVisitedCoords(ops, 10)
-		println(visitedCoords.size)
+		val head = SnakeSegment()
+		val segments = mutableListOf(head)
+		var prevSegment = head
+		repeat(9) {
+			prevSegment = prevSegment.addAfter()
+			segments.add(prevSegment)
+		}
+		val tail = prevSegment
+		val locationList = mutableSetOf<Pair<Int, Int>>()
+
+		ops.forEach { (dir, amount) ->
+			repeat(amount) {
+				when (dir) {
+					'U' -> head.move(0, 1)
+					'D' -> head.move(0, -1)
+					'R' -> head.move(1, 0)
+					'L' -> head.move(-1, 0)
+				}
+
+				locationList.add(Pair(tail.x, tail.y))
+			}
+		}
+
+		println(locationList.size)
 	}
 }
