@@ -57,7 +57,7 @@ object Day12 : AoCDay {
 		val matrix: MutableList<List<XYNode>> = mutableListOf()
 		var lineAbove: List<XYNode>? = null
 		var nodeLeft: XYNode? = null
-		var starts: MutableList<XYNode> = mutableListOf()
+		val starts: MutableList<XYNode> = mutableListOf()
 		var end: XYNode? = null
 
 		lines.forEach { intArr ->
@@ -75,6 +75,7 @@ object Day12 : AoCDay {
 		}
 
 		end!!.value = 122
+		end!!.cost = 0
 
 		var costMap: Map<Int, List<XYNode>>;
 		var ended = false
@@ -85,7 +86,11 @@ object Day12 : AoCDay {
 			costMap = matrix.flatten().groupBy { it.cost ?: Int.MAX_VALUE }
 			costMap[currentCost]?.forEach {
 				it.populateNeighbors()
-				if (it == end) ended = true
+				if (starts.contains(it)) {
+					ended = true
+					println(it.cost)
+				}
+
 			}
 			currentCost++;
 		}

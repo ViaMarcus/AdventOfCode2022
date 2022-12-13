@@ -22,7 +22,7 @@ class XYNode(
 		listOf(left, right, up, down).forEach {
 			if (it == null) return@forEach
 
-			if (it.value <= this.value + 1 && it.cost == null) {
+			if (it.value >= this.value - 1 && it.cost == null) {
 				it.cost = this.cost!! + 1
 			}
 		}
